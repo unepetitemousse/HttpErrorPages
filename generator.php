@@ -3,6 +3,8 @@
  * HttpErrorPages HTML Generator
  */
 
+require_once 'image.php';
+
 // default config file
 $configFilename = 'config.ini';
 
@@ -22,7 +24,7 @@ if (isset($argv[1])){
 $config = parse_ini_file($configFilename, false);
 
 //default language
-$language = 'en_US'; 
+$language = 'fr_FR';
 
 if (isset($argv[2])) {
     $language = $argv[2];
@@ -36,6 +38,10 @@ switch($language) {
     case 'en_US':
         $pages = require('pages-en_US.php');
         break;
+      break;
+    case 'fr_FR':
+        $pages = require('pages-fr_FR.php');
+        break;
     default:
         $pages = require('pages-en_US.php');
         break;      
@@ -46,6 +52,18 @@ file_put_contents('dist/pages.json', json_encode($pages));
 
 // load inline css
 $css = trim(file_get_contents('assets/Layout.css'));
+
+
+
+// load base64 logo
+if ($config['logo']) {
+  $logo300 = resizeImage($config['logo'], 400, 400);
+  $v_logoMimeType = 'image/png';
+  $v_logoBase64 = base64_encode($logo300);
+  $v_logoAlt = $config['logo_alt'];
+  $v_logoTitle = $config['logo_title'];
+}
+$v_radix = $config['title'];
 
 // js template page
 $pages['{{code}}'] = array(
@@ -63,6 +81,14 @@ foreach ($pages as $code => $page){
     $v_title = nl2br(htmlspecialchars($page['title']));
     $v_message = nl2br(htmlspecialchars($page['message']));
     $v_footer = (isset($config['footer']) ? $config['footer'] : '');
+    $v_emoji = isset($page['emoji']) ? $page['emoji'] : '😰';
+    if (@$page['global'] && @$page['permanent']) {
+      $v_common = $config['common'] . $config['calamity'];
+    } elseif (@$page['permanent']) {
+      $v_common = $config['common'] . $config['permanent'];
+    } else {
+      $v_common = $config['common'] . $config['temporary'];
+    }
 
     // render template
     ob_start();
