@@ -47,8 +47,10 @@ switch($language) {
         break;      
 }
 
+@mkdir($config['output_dir'], 0777, true);
+
 // store pages as json data
-file_put_contents('dist/pages.json', json_encode($pages));
+file_put_contents($config['output_dir'].DIRECTORY_SEPARATOR.'pages.json', json_encode($pages));
 
 // load inline css
 $css = trim(file_get_contents('assets/Layout.css'));
