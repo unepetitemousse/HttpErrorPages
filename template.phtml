@@ -1,44 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Simple HttpErrorPages | MIT X11 License | https://github.com/AndiDittrich/HttpErrorPages -->
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title><?php echo $v_radix; ?> | <?php echo $v_code; ?> - <?php echo $v_title; ?></title>
 
-    <title><?php echo $v_radix; ?> | <?php echo $v_code; ?> - <?php echo $v_title; ?></title>
-
-    <style type="text/css"><?php echo $css; ?></style>
-
+  <style type="text/css"><?php echo $css; ?></style>
 </head>
 
 <body>
-    <div class="cover">
-      <?php if (!empty($v_logoBase64)){ ?>
-        <a href="/">
-          <img
-            class="logo"
-            alt="<?php echo $v_logoAlt; ?>"
-            title="<?php echo $v_logoTitle; ?>"
-            src="data:<?php echo $v_logoMimeType; ?>;base64,<?php echo $v_logoBase64;?>"
-          >
-        </a>
-      <?php } ?>
-        <h1>
-          <span class="emoji"><?php echo $v_emoji; ?></span>
-          <?php echo $v_title; ?>
-          <small class="tooltip">HTTP <?php echo $v_code; ?>
-            <span class="tooltiptext"><?php echo $v_message; ?></span>
-          </small>
-        </h1>
-        <p class="lead"><?php echo $v_common; ?></p>
-    </div>
-    
-    <?php if (!empty($v_footer)){ ?>
-    <footer>
-        <p><?php echo $v_footer; ?></p>
-    </footer>
-    <?php } ?>
+<div class="cover">
+  <?php if (!empty($v_logoBase64)) { ?>
+    <a href="/">
+      <img
+          class="logo"
+          alt="<?php echo $v_logoAlt; ?>"
+          title="<?php echo $v_logoTitle; ?>"
+          src="data:<?php echo $v_logoMimeType; ?>;base64,<?php echo $v_logoBase64; ?>"
+      >
+    </a>
+  <?php } ?>
+  <h1>
+    <span class="emoji"><?php echo $v_emoji; ?></span>
+    <?php echo $v_title; ?>
+    <small class="tooltip">HTTP <?php echo $v_code; ?>
+      <span class="tooltiptext"><?php echo $v_message; ?></span>
+    </small>
+  </h1>
+  <p class="lead"><?php echo $v_common; ?></p>
+</div>
+
+<?php if (!empty($v_footer)) { ?>
+  <footer>
+    <p><?php echo $v_footer; ?></p>
+  </footer>
+<?php } ?>
+<noscript>
+  <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NMMNNM"
+          height="0" width="0" style="display:none;visibility:hidden"></iframe>
+</noscript>
 </body>
 </html>
