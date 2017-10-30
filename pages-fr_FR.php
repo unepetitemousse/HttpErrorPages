@@ -38,7 +38,7 @@ return array(
 
   // internal server error
   '500' => array(
-    'emoji' => '☠️',
+    'emoji' => '😵',
     'permanent' => false,
     'global' => false,
     'title' => 'Page actuellement indisponible',
