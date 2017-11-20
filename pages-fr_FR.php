@@ -74,7 +74,7 @@ return array(
 
   // gateway timeout
   '504' => array(
-    'emoji' => '⏲️',
+    'emoji' => '🕒',
     'permanent' => false,
     'global' => false,
     'title' => 'Page actuellement indisponible',
